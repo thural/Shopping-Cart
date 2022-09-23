@@ -4,19 +4,13 @@ import Card from "./Card";
 
 const useStyles = createUseStyles({
   wrapper: {
-    width: 'fit-content',
+    width: '600px',
     margin:'0px',
-    marginBottom: '24px',
-    backgroundColor: 'deeppink',
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 1fr)',
-    gap: 'clamp(24px, 3vmin, 4vmin)',
     justifyContent: 'center',
     justifyItems: 'center',
-    padding:'clamp(32px, 4vmin, 5vmin)',
-    border: 'black solid 1px',
-    borderRadius: '32px',
-    
+    gap: '24px',
   }
 });
 

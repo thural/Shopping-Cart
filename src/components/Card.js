@@ -30,7 +30,6 @@ const useStyles = createUseStyles({
 
 const Card = ({card, handleCard}) => {
   const classes = useStyles()
-  console.log(card);
   const [id, title, price, image] = card;
   return (
     <div id={id} className={classes.wrapper} onClick={(e) => {handleCard(title)}}>

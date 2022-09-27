@@ -6,6 +6,7 @@ const useStyles = createUseStyles({
   wrapper: {
     width: '600px',
     margin:'0px',
+    marginBottom: '3rem',
     display: 'grid',
     gridTemplateColumns: 'repeat(3, 1fr)',
     justifyContent: 'center',
@@ -14,14 +15,14 @@ const useStyles = createUseStyles({
   }
 });
 
-const CardBoard = ({ cards, handleCard }) => {
+const CardBoard = ({ cards, handleCart }) => {
 
   const classes = useStyles();
   
   return (
     <div className={classes.wrapper}>
       {
-        cards.map((card) => (<Card key={card.id} card={card} handleCard={handleCard}/>))
+        cards.map((card) => (<Card key={card.id} card={card} handleCart={handleCart}/>))
       }
     </div>
   )

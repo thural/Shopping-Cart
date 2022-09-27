@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 const useStyles = createUseStyles(
   {
      navbar: {
+        position: 'sticky',
+        top: '0',
         boxSizing: "border-box",
         color: "white",
         fontSize: '16px',
@@ -33,7 +35,7 @@ const useStyles = createUseStyles(
   }
 );
 
-const NavBar = () => {
+const NavBar = ({children}) => {
 
   const classes = useStyles();
 
@@ -43,6 +45,7 @@ const NavBar = () => {
         <Link to="/"><li>Home</li></Link>
         <Link to="/products"><li>Products</li></Link>
         <Link to="/contact"><li>Contact</li></Link>
+        {children}
       </ul>
     </div>
   );

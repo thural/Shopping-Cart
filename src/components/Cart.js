@@ -4,10 +4,6 @@ import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles(
   {
-    cartBtn: {
-      width: '50px',
-      height: '50px',
-    },
     cart: {
       position: 'fixed',
       boxSizing: "border-box",
@@ -33,7 +29,11 @@ const useStyles = createUseStyles(
       '& li': {
         listStyle: "none",
       },
-      items: {
+      '& .cartBtn': {
+        width: '50px',
+        height: '50px',
+      },
+      '& .items': {
         width: '100%',
         display: "grid",
         padding: '1rem',
@@ -41,17 +41,17 @@ const useStyles = createUseStyles(
         gridAutoRows: '150px',
         justifyContent: 'space-around',
       },
-      item: {
+      '& .item': {
         margin: '0',
         diplay: 'grid',
         gridTemplateColumns: '1fr, 2fr',
       },
-      details: {
+      '& .details': {
         display: 'flex',
         flexDirection: 'column',
         flexWrap: 'nowrap'
       },
-      counter: {
+      '& .counter': {
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
@@ -77,18 +77,18 @@ const Cart = ({ products, handleCart }) => {
       </div>
       <div className={classes.cart}>
         <header>shopping Cart</header>
-        <div className={classes.items}>
+        <div className='items'>
 
           {products.map(product => (
-            <div key={product.id}className={classes.item}>
-              <img src={product.image}></img>
-              <div className={classes.details}>
+            <div key={product.id}className='item'>
+              <img src={product.image}/>
+              <div className='details'>
                 <h3>{product.title}</h3>
                 <p>{/*(product.price * product.count)*/}</p>
-                <div className={classes.counter}>
-                  <button onClick={handleCart(product.id, 'decrement')}>-</button>
+                <div className='counter'>
+                  <button onClick={() => handleCart(product.id, 'decrement')}>-</button>
                   <p>{product.count}</p>
-                  <button onClick={handleCart(product.id, 'increment')}>+</button>
+                  <button onClick={() => handleCart(product.id, 'increment')}>+</button>
                 </div>
               </div>
             </div>

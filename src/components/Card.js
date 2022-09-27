@@ -49,7 +49,7 @@ const Card = ({card, handleCart}) => {
   const classes = useStyles()
   const {id, title, price, image} = card;
   return (
-    <div id={id} className={classes.wrapper} onClick={handleCart(id, 'increment')}>
+    <div id={id} className={classes.wrapper} onClick={() => handleCart(id, 'increment')}>
       <div className="image">
         <img src={image}></img>
       </div>

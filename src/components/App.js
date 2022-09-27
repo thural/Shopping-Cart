@@ -51,7 +51,9 @@ const App = () => {
   };
 
   useEffect(() => { fetchProducts() }, []);
+
   const classes = useStyles();
+
   return (
     <div className={classes.app}>
       <NavBar>
@@ -59,7 +61,7 @@ const App = () => {
       </NavBar>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products products={products} />} />
+        <Route path="/products" element={<Products products={products} handleCart={handleCart} />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </div>

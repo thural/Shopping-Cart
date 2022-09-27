@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import { createUseStyles } from "react-jss"
 import { Route, Routes } from "react-router-dom";
 import { Products } from "./Products";
@@ -24,6 +24,30 @@ const useStyles = createUseStyles(
   }
 );
 
+function cartReducer(state, {id, type, item}) {
+
+  const matchesID = (element) => element.id === id;
+  const hasInCart = state.findIndex(matchesID) !== -1;
+  console.log(hasInCart);
+
+  switch (type) {
+    case 'increment':
+      if(hasInCart) return state.map(product => {
+        if (product.id == id) return {...product, count: product.count + 1}
+        else return product
+      })
+      else return [...state, {...item, count:1}];
+    case 'decrement':
+      if(hasInCart) return state.map(product => {
+        if (product.id == id) return {...product, count: product.count - 1}
+        else return product
+      })
+    case 'remove':
+      return state.filter(product => product.id !== id);
+    default: return state
+  }
+};
+
 const App = () => {
 
   const fetchProducts = async () => {
@@ -44,10 +68,11 @@ const App = () => {
     },
   ]);
 
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useReducer(cartReducer,[]);
 
-  const handleCart = (id, action) => {
-    console.log(id)
+  const handleCart = (action) => {
+    setCart(action);
+    console.log(cart)
   };
 
   useEffect(() => { fetchProducts() }, []);

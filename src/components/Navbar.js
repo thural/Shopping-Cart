@@ -45,8 +45,8 @@ const NavBar = ({children}) => {
         <Link to="/"><li>Home</li></Link>
         <Link to="/products"><li>Products</li></Link>
         <Link to="/contact"><li>Contact</li></Link>
-        {children}
       </ul>
+      {children}
     </div>
   );
 };

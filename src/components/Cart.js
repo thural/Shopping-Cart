@@ -1,27 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import cartImg from './cart.svg';
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles(
   {
+    cartBtn: {
+      width: '2rem',
+      height: '2rem',
+      backgroundColor: 'blanchedalmond',
+      padding: '10px',
+      borderRadius: '50px',
+    },
     cart: {
-      position: 'fixed',
-      boxSizing: "border-box",
-      backgroundColor: 'white',
       top: '0',
+      color: 'black',
       right: '0',
+      width: '36%',
       bottom: '0',
-      color: "black",
-      padding: '2rem',
-      fontSize: '16px',
       margin: '0px',
+      display: 'flex',
       padding: '1rem',
-      width: '30%',
-      display: 'none',
-      justifyContent: 'space-around',
+      position: 'fixed',
+      flexWrap: 'nowrap',
+      fontSize: '16px',
+      boxSizing: 'border-box',
       alignItems: 'center',
       flexDirection: 'column',
-      flexWrap: 'nowrap',
+      justifyContent: 'space-around',
+      backgroundColor: 'white',
       '& a, a:hover, a:focus, a:active': {
         textDecoration: 'none',
         color: 'inherit',
@@ -29,33 +35,51 @@ const useStyles = createUseStyles(
       '& li': {
         listStyle: "none",
       },
-      '& .cartBtn': {
-        width: '50px',
-        height: '50px',
-      },
       '& .items': {
-        width: '100%',
-        display: "grid",
-        padding: '1rem',
-        gridTemplateColumns: '1fr',
+        gap: '1rem',
+        display: 'grid',
+        overflow: 'auto',
         gridAutoRows: '150px',
         justifyContent: 'space-around',
+        gridTemplateColumns: '100%'
       },
       '& .item': {
         margin: '0',
-        diplay: 'grid',
-        gridTemplateColumns: '1fr, 2fr',
+        display: 'grid',
+        alignItems: 'center',
+        alignContent: 'center',
+        justifyContent: 'center',
+        gridTemplateColumns: '1fr 2fr'
+      },
+      '& .image': {
+        minWidth: '64px',
+        minHeight: '64px',
+        display: 'flex',
+      },
+      '& img': {
+        maxHeight: '64px',
+        maxWidth: '64px',
+        borderRadius: '16px',
+        margin: 'auto',
       },
       '& .details': {
         display: 'flex',
         flexDirection: 'column',
-        flexWrap: 'nowrap'
+        flexWrap: 'nowrap',
+        whiteSpace: 'nowrap', 
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
       },
       '& .counter': {
         display: 'flex',
-        flexDirection: 'row',
         alignItems: 'center',
-      }
+        flexDirection: 'row',
+        justifyContent: 'center',
+        gap: '1rem'
+      },
+      '& p': {
+        alignSelf: 'center',
+      },
     }
   }
 );
@@ -63,6 +87,29 @@ const useStyles = createUseStyles(
 const Cart = ({ products, handleCart }) => {
 
   const classes = useStyles();
+
+  const [display, setDisplay] = useState('none');
+
+  useEffect(() => {
+
+    const toggleDisplayOnClick = () => {
+      if (display === "none") setDisplay("flex")
+      else setDisplay("none");
+      console.log(display)
+    };
+
+    document.getElementById('cartBtn')
+      .addEventListener("click", toggleDisplayOnClick);
+    document.getElementById('close')
+      .addEventListener("click", toggleDisplayOnClick);
+
+    return () => {
+      document.getElementById('cartBtn')
+        .removeEventListener("click", toggleDisplayOnClick);
+      document.getElementById('close')
+        .removeEventListener("click", toggleDisplayOnClick);
+    };
+  }, [display]);
 
   const total = () => {
     let sum = 0;
@@ -72,23 +119,23 @@ const Cart = ({ products, handleCart }) => {
 
   return (
     <>
-      <div className={classes.cartBtn}>
+      <div id="cartBtn" className={classes.cartBtn}>
         <img src={cartImg} ></img>
       </div>
-      <div className={classes.cart}>
-        <header>shopping Cart</header>
+      <div className={classes.cart} style={{ display: display }}>
+        <h3>Shopping Cart</h3>
         <div className='items'>
 
-          {products.map(product => (
-            <div key={product.id}className='item'>
-              <img src={product.image}/>
+          {products.map(({ id, image, title, count, price }) => (
+            <div key={id} className='item'>
+              <div className="image"><img src={image} /></div>
               <div className='details'>
-                <h3>{product.title}</h3>
-                <p>{/*(product.price * product.count)*/}</p>
+                <h5>{title}</h5>
+                <p>${(price * count)}</p>
                 <div className='counter'>
-                  <button onClick={() => handleCart(product.id, 'decrement')}>-</button>
-                  <p>{product.count}</p>
-                  <button onClick={() => handleCart(product.id, 'increment')}>+</button>
+                  <button onClick={() => handleCart({ id, type: 'decrement' })}>-</button>
+                  <p>{count}</p>
+                  <button onClick={() => handleCart({ id, type: 'increment' })}>+</button>
                 </div>
               </div>
             </div>
@@ -96,9 +143,9 @@ const Cart = ({ products, handleCart }) => {
 
         </div>
         <p>total:</p>
-        <div className={classes.buttons}>
+        <div className='buttons'>
           <button>checkout</button>
-          <button>close</button>
+          <button id="close">close</button>
         </div>
       </div>
     </>

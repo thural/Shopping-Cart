@@ -11,16 +11,18 @@ const useStyles = createUseStyles({
     justifyItems: 'center',
     gridTemplateRows: '4fr 1fr 1fr',
     '& img':{
-      maxHeight: '8rem',
-      maxWidth: '8rem',
-      borderRadius: '1rem',
       margin: 'auto',
+      maxWidth: 'inherit',
+      maxHeight: 'inherit',
+      borderRadius: '1rem'
     },
     '& .image':{
-      minWidth: '8rem',
-      minHeight: '8rem',
       display: 'flex',
-      marginBottom: '1rem',
+      minWidth: '8rem',
+      maxWidth: '16rem',
+      minHeight: '8rem',
+      maxHeight: '16rem',
+      marginBottom: '1rem'
     },
     '& .title': {
       width: '100%',
@@ -50,7 +52,7 @@ const Card = ({card, handleCart}) => {
   const classes = useStyles()
   const {id, title, price, image} = card;
   return (
-    <div id={id} className={classes.wrapper} onClick={() => handleCart({id, type:'increment', item:card})}>
+    <div id={id} className={classes.wrapper}>
       <div className="image">
         <img src={image}></img>
       </div>
@@ -59,7 +61,7 @@ const Card = ({card, handleCart}) => {
       </div>
       <div className="add">
         <p>${price}</p>
-        <button>add to cart</button>
+        <button onClick={() => handleCart({id, type:'increment', item:card})}>add to cart</button>
       </div>
     </div>
   )

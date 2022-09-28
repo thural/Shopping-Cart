@@ -11,7 +11,7 @@ const useStyles = createUseStyles(
       width: '100%',
       margin: '0px',
       display: 'flex',
-      padding: '1rem',
+      padding: '1rem 2rem',
       position: 'sticky',
       flexWrap: 'nowrap',
       fontSize: '1.3rem',
@@ -25,11 +25,10 @@ const useStyles = createUseStyles(
       },
       '& ul': {
         display: "flex",
-        width: "30%",
         marginLeft: "auto",
         listStyle: "none",
         justifyContent: 'space-around',
-        gap: '1rem',
+        gap: '2rem',
       },
       '& li': {
         listStyle: "none",

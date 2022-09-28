@@ -59,7 +59,7 @@ const useStyles = createUseStyles(
         justifyContent: 'space-around',
         backgroundColor: 'whitesmoke',
         gridTemplateColumns: '100%',
-        boxShadow: 'inset 0px 0px 16px -8px black',
+        boxShadow: 'rgb(0 0 0 / 25%) -16px 0px 32px 16px'
       },
       '& .item': {
         margin: '0',
@@ -83,9 +83,14 @@ const useStyles = createUseStyles(
         display: 'flex',
         flexDirection: 'column',
         flexWrap: 'nowrap',
+        gap: '1rem',
         whiteSpace: 'nowrap',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
+        '& *':{
+          marginTop:'0px',
+          marginBottom: '0px',
+        }
       },
       '& .counter': {
         display: 'flex',
@@ -101,16 +106,20 @@ const useStyles = createUseStyles(
       '& h3': {
         fontSize: '2rem'
       },
+      '& .buttons': {
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+      },
       '& .buttons button': {
-        position: 'relative',
+        border: '0px',
         margin: '1rem',
         padding: '1rem',
+        position: 'relative',
         fontSize: '1rem',
         fontWeight: '600',
-        backgroundColor: 'khaki',
         borderRadius: '0.5rem',
-        border: '0px',
-        boxShadow: '0px 2px 16px -4px #888888'
+        backgroundColor: 'lightsalmon',
+        border: '1px solid lightgrey'
       },
 
     }
@@ -123,29 +132,10 @@ const Cart = ({ products, handleCart }) => {
 
   const [display, setDisplay] = useState('none');
 
-  useEffect(() => {
-
-    const toggleDisplayOnClick = () => {
-      if (display === "none") setDisplay("grid")
-      else setDisplay("none");
-    };
-
-    document.getElementById('cartBtn')
-      .addEventListener("click", toggleDisplayOnClick);
-    document.getElementById('close')
-      .addEventListener("click", toggleDisplayOnClick);
-    document.getElementById('cartBckg')
-      .addEventListener('click', toggleDisplayOnClick)
-
-    return () => {
-      document.getElementById('cartBtn')
-        .removeEventListener("click", toggleDisplayOnClick);
-      document.getElementById('close')
-        .removeEventListener("click", toggleDisplayOnClick);
-      document.getElementById('cartBckg')
-        .removeEventListener('click', toggleDisplayOnClick)
-    };
-  }, [display]);
+  const toggleDisplayOnClick = () => {
+    if (display === "none") setDisplay("grid")
+    else setDisplay("none");
+  };
 
   const total = () => {
     let sum = 0;
@@ -155,10 +145,10 @@ const Cart = ({ products, handleCart }) => {
 
   return (
     <>
-      <div id="cartBtn" className={classes.cartBtn}>
+      <div className={classes.cartBtn} onClick={toggleDisplayOnClick}>
         <img src={cartImg} ></img>
       </div>
-      <div id="cartBckg" className={classes.cartBckg} style={{ display: display }}></div>
+      <div className={classes.cartBckg} style={{ display: display }}  onClick={toggleDisplayOnClick}></div>
       <div className={classes.cart} style={{ display: display }}>
         <h3>Shopping Cart</h3>
 
@@ -182,7 +172,7 @@ const Cart = ({ products, handleCart }) => {
         <h3>total:</h3>
         <div className='buttons'>
           <button>checkout</button>
-          <button id="close">close</button>
+          <button onClick={toggleDisplayOnClick}>close</button>
         </div>
       </div>
     </>

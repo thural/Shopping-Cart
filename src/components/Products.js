@@ -1,13 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { createUseStyles } from "react-jss";
 import CardBoard from "./CardBoard";
 
-const Products = ({products, handleCart}) => {
+const useStyle = createUseStyles({
+  products: {
+    margin: 'auto',
+    padding: '3rem'
+  }
+})
+const Products = ({ products, handleCart }) => {
+
+  const classes = useStyle();
 
   return (
-    <div className="products">
+    <div className={classes.products}>
       <CardBoard cards={products} handleCart={handleCart} />
     </div>
   );
 };
 
-export {Products};
+export { Products };

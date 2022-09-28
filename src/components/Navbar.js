@@ -4,38 +4,41 @@ import { Link } from "react-router-dom";
 
 const useStyles = createUseStyles(
   {
-     navbar: {
-        position: 'sticky',
-        top: '0',
-        boxSizing: "border-box",
-        color: "white",
-        fontSize: '16px',
-        margin: '0px',
-        padding: '1rem',
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        flexWrap: 'nowrap',
-        backgroundColor: 'black',
-        '& a, a:hover, a:focus, a:active': {
-          textDecoration: 'none',
-          color: 'inherit',
-        },
-        '& ul': {
-          display: "flex",
-          width: "30%",
-          marginLeft: "auto",
-          listStyle: "none",
-          justifyContent: 'space-around',
-        },
-        '& li': {
-          listStyle: "none",
-        }
-     }
+    navbar: {
+      gap: '3rem',
+      top: '0',
+      color: 'white',
+      width: '100%',
+      margin: '0px',
+      display: 'flex',
+      padding: '1rem',
+      position: 'sticky',
+      flexWrap: 'nowrap',
+      fontSize: '1.3rem',
+      boxSizing: 'border-box',
+      alignItems: 'center',
+      backgroundColor: 'black',
+      fontWeight: '500',
+      '& a, a:hover, a:focus, a:active': {
+        textDecoration: 'none',
+        color: 'inherit',
+      },
+      '& ul': {
+        display: "flex",
+        width: "30%",
+        marginLeft: "auto",
+        listStyle: "none",
+        justifyContent: 'space-around',
+        gap: '1rem',
+      },
+      '& li': {
+        listStyle: "none",
+      }
+    }
   }
 );
 
-const NavBar = ({children}) => {
+const NavBar = ({ children }) => {
 
   const classes = useStyles();
 

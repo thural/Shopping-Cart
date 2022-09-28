@@ -2,23 +2,17 @@ import React, { useState, useReducer, useEffect } from "react";
 import { createUseStyles } from "react-jss"
 import { Route, Routes } from "react-router-dom";
 import { Products } from "./Products";
+import Contact from "./Contact";
 import NavBar from "./Navbar";
 import Home from "./Home";
 import Cart from "./Cart";
-import Contact from "./Contact";
 
 const useStyles = createUseStyles(
   {
     app: {
-      fontSize: '16px',
-      padding: '0px',
+      margin: '0',
+      padding: '0',
       width: '100%',
-      display: 'flex',
-      flexFlow: 'column nowrap',
-      alignItems: 'center',
-      justifyContent: 'center',
-      justifyItems: 'center',
-      gap: '3rem',
       backgroundColor: 'whitesmoke'
     }
   }

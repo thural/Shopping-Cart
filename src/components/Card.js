@@ -4,27 +4,28 @@ import { createUseStyles } from "react-jss";
 const useStyles = createUseStyles({
   wrapper: {
     border: 'black solid 1px',
-    borderRadius: '16px',
-    padding: '16px',
+    borderRadius: '1rem',
+    padding: '1rem',
     backgroundColor: 'white',
     display: 'grid',
+    justifyItems: 'center',
     gridTemplateRows: '4fr 1fr 1fr',
     '& img':{
-      maxHeight: '256px',
-      maxWidth: '256px',
-      borderRadius: '16px',
+      maxHeight: '8rem',
+      maxWidth: '8rem',
+      borderRadius: '1rem',
       margin: 'auto',
     },
     '& .image':{
-      minWidth: '256px',
-      minHeight: '256px',
+      minWidth: '8rem',
+      minHeight: '8rem',
       display: 'flex',
-      marginBottom: '16px',
+      marginBottom: '1rem',
     },
     '& .title': {
       width: '100%',
       margin: '0px',
-      paddingTop: '16px',
+      paddingTop: '1rem',
       borderTop: '1px solid black',
       overflow: 'hidden',
       textOverflow: 'ellipsis',
@@ -35,12 +36,12 @@ const useStyles = createUseStyles({
     },
     '& h3': {
       textAlign:'center',
-      fontSize: '16px',
+      fontSize: '1rem',
       margin: '0px'
     },
     '& p': {
       display: 'inline-block',
-      marginRight: '16px'
+      marginRight: '1rem'
     }
   },
 });

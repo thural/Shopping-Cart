@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import cartImg from './cart.svg';
 import { createUseStyles } from "react-jss";
+import cartImg from './cart.svg';
 
 const useStyles = createUseStyles(
   {
@@ -18,16 +18,16 @@ const useStyles = createUseStyles(
       width: '36%',
       bottom: '0',
       margin: '0px',
-      display: 'flex',
       padding: '1rem',
+      display: 'none',
       position: 'fixed',
       flexWrap: 'nowrap',
       fontSize: '16px',
+      boxShadow: 'rgba(136, 136, 136, 0.5) -16px 0px 32px 16px',
       boxSizing: 'border-box',
-      alignItems: 'center',
-      flexDirection: 'column',
-      justifyContent: 'space-around',
+      justifyItems: 'center',
       backgroundColor: 'white',
+      gridTemplateRows: '1fr 7fr 1fr 1fr',
       '& a, a:hover, a:focus, a:active': {
         textDecoration: 'none',
         color: 'inherit',
@@ -37,11 +37,15 @@ const useStyles = createUseStyles(
       },
       '& .items': {
         gap: '1rem',
+        width: '100%',
         display: 'grid',
         overflow: 'auto',
+        borderRadius: '1rem',
         gridAutoRows: '150px',
+        gridTemplateColumns: '100%',
+        backgroundColor: 'whitesmoke',
         justifyContent: 'space-around',
-        gridTemplateColumns: '100%'
+        boxShadow: 'inset 0px 0px 16px -8px black'
       },
       '& .item': {
         margin: '0',
@@ -59,14 +63,13 @@ const useStyles = createUseStyles(
       '& img': {
         maxHeight: '64px',
         maxWidth: '64px',
-        borderRadius: '16px',
         margin: 'auto',
       },
       '& .details': {
         display: 'flex',
         flexDirection: 'column',
         flexWrap: 'nowrap',
-        whiteSpace: 'nowrap', 
+        whiteSpace: 'nowrap',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
       },
@@ -79,7 +82,23 @@ const useStyles = createUseStyles(
       },
       '& p': {
         alignSelf: 'center',
+        fontWeight: '600',
       },
+      '& h3': {
+        fontSize: '2rem'
+      },
+      '& .buttons button': {
+        position: 'relative',
+        margin: '1rem',
+        padding: '1rem',
+        fontSize: '1rem',
+        fontWeight: '600',
+        backgroundColor: 'khaki',
+        borderRadius: '0.5rem',
+        border: '0px',
+        boxShadow: '0px 2px 16px -4px #888888'
+      },
+      
     }
   }
 );
@@ -93,7 +112,7 @@ const Cart = ({ products, handleCart }) => {
   useEffect(() => {
 
     const toggleDisplayOnClick = () => {
-      if (display === "none") setDisplay("flex")
+      if (display === "none") setDisplay("grid")
       else setDisplay("none");
       console.log(display)
     };
@@ -124,8 +143,8 @@ const Cart = ({ products, handleCart }) => {
       </div>
       <div className={classes.cart} style={{ display: display }}>
         <h3>Shopping Cart</h3>
-        <div className='items'>
 
+        <div className='items'>
           {products.map(({ id, image, title, count, price }) => (
             <div key={id} className='item'>
               <div className="image"><img src={image} /></div>
@@ -140,9 +159,9 @@ const Cart = ({ products, handleCart }) => {
               </div>
             </div>
           ))}
-
         </div>
-        <p>total:</p>
+
+        <h3>total:{total}</h3>
         <div className='buttons'>
           <button>checkout</button>
           <button id="close">close</button>

@@ -12,12 +12,27 @@ const useStyles = createUseStyles(
       padding: '10px',
       borderRadius: '50px',
     },
+    cartBadge: {
+      top: '-25%',
+      right: '50%',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '75%',
+      height: '75%',
+      fontSize: '1rem',
+      position: 'relative',
+      backgroundColor: 'lightcoral',
+      margin: '0',
+      padding: '0',
+      borderRadius: '50%'
+    },
     cartBckg: {
       position: "fixed",
-      top:'0',
-      right:'0',
-      bottom:'0',
-      left:'0',
+      top: '0',
+      right: '0',
+      bottom: '0',
+      left: '0',
       zIndex: '0',
       display: 'none',
     },
@@ -38,7 +53,7 @@ const useStyles = createUseStyles(
       boxSizing: 'border-box',
       backgroundColor: 'white',
       gridTemplateRows: '1fr 7fr 1fr 1fr',
-      boxShadow: 'rgba(136, 136, 136, 0.5) -16px 0px 32px 16px',
+      boxShadow: 'rgb(0 0 0 / 25%) -16px 0px 32px 16px',
       '& a, a:hover, a:focus, a:active': {
         textDecoration: 'none',
         color: 'inherit',
@@ -49,17 +64,17 @@ const useStyles = createUseStyles(
       '& .items': {
         gap: '1rem',
         width: '100%',
+        margin: 'auto',
         display: 'grid',
         overflow: 'auto',
+        maxHeight: '100%',
+        minHeight: '50%',
         borderRadius: '1rem',
         gridAutoRows: '150px',
-        minHeight: '50%',
-        maxHeight: '100%',
-        margin: 'auto',
         justifyContent: 'space-around',
         backgroundColor: 'whitesmoke',
         gridTemplateColumns: '100%',
-        boxShadow: 'rgb(0 0 0 / 25%) -16px 0px 32px 16px'
+        boxShadow: 'inset rgb(0 0 0 / 25%) 0px 0px 16px 0px',
       },
       '& .item': {
         margin: '0',
@@ -87,8 +102,8 @@ const useStyles = createUseStyles(
         whiteSpace: 'nowrap',
         overflow: 'hidden',
         textOverflow: 'ellipsis',
-        '& *':{
-          marginTop:'0px',
+        '& *': {
+          marginTop: '0px',
           marginBottom: '0px',
         }
       },
@@ -104,29 +119,32 @@ const useStyles = createUseStyles(
         fontWeight: '600',
       },
       '& h3': {
-        fontSize: '2rem'
+        fontSize: '2rem',
+        marginTop: '1rem',
       },
       '& .buttons': {
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
+        width: '100%',
+        height: 'fit-content',
+        gap: '1rem',
+        marginTop: 'auto',
+        marginBottom: '1rem'
       },
       '& .buttons button': {
-        border: '0px',
-        margin: '1rem',
-        padding: '1rem',
-        position: 'relative',
+        border: '1px solid lightgrey',
+        padding: '1em',
         fontSize: '1rem',
         fontWeight: '600',
         borderRadius: '0.5rem',
-        backgroundColor: 'lightsalmon',
-        border: '1px solid lightgrey'
+        backgroundColor: 'lightsalmon'
       },
 
     }
   }
 );
 
-const Cart = ({ products, handleCart }) => {
+const Cart = ({ cart: items, handleCart }) => {
 
   const classes = useStyles();
 
@@ -137,23 +155,31 @@ const Cart = ({ products, handleCart }) => {
     else setDisplay("none");
   };
 
-  const total = () => {
-    let sum = 0;
-    products.forEach(({ price, count }) => sum += price * count);
-    return sum
+  const countItems = (items) => {
+    const count = items
+    .reduce((sum, {count}) => sum + count, 0);
+    return String(count)
+  };
+
+  const calcTotal = (items) => {
+    const total = items
+    .reduce((sum, { price, count }) => sum + (price * count), 0);
+    return String(Math.ceil(total * 10) / 10)
   };
 
   return (
     <>
       <div className={classes.cartBtn} onClick={toggleDisplayOnClick}>
         <img src={cartImg} ></img>
+        <div className={classes.cartBadge}>{countItems(items)}</div>
       </div>
-      <div className={classes.cartBckg} style={{ display: display }}  onClick={toggleDisplayOnClick}></div>
+
+      <div className={classes.cartBckg} style={{ display: display }} onClick={toggleDisplayOnClick}></div>
+
       <div className={classes.cart} style={{ display: display }}>
         <h3>Shopping Cart</h3>
-
         <div className='items'>
-          {products.map(({ id, image, title, count, price }) => (
+          {items.map(({ id, image, title, count, price }) => (
             <div key={id} className='item'>
               <div className="image"><img src={image} /></div>
               <div className='details'>
@@ -168,8 +194,7 @@ const Cart = ({ products, handleCart }) => {
             </div>
           ))}
         </div>
-
-        <h3>total:</h3>
+        <h3>total: ${calcTotal(items)}</h3>
         <div className='buttons'>
           <button>checkout</button>
           <button onClick={toggleDisplayOnClick}>close</button>

@@ -11,7 +11,7 @@ const useStyles = createUseStyles(
       width: '100%',
       margin: '0px',
       display: 'flex',
-      padding: '1rem 2rem',
+      padding: '1rem 3rem',
       position: 'sticky',
       flexWrap: 'nowrap',
       fontSize: '1.3rem',

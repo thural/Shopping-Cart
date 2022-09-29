@@ -15,17 +15,19 @@ const useStyles = createUseStyles(
     cartBadge: {
       top: '-25%',
       right: '50%',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
       width: '75%',
       height: '75%',
-      fontSize: '1rem',
-      position: 'relative',
-      backgroundColor: 'lightcoral',
       margin: '0',
+      display: 'flex',
       padding: '0',
-      borderRadius: '50%'
+      position: 'relative',
+      fontSize: '1rem',
+      alignItems: 'center',
+      borderRadius: '50%',
+      justifyContent: 'center',
+      verticalAlign: 'middle',
+      lineHeight: '100%',
+      backgroundColor: 'lightcoral'
     },
     cartBckg: {
       position: "fixed",

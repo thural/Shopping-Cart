@@ -4,30 +4,28 @@ import { createUseStyles } from "react-jss";
 const useStyles = createUseStyles({
   wrapper: {
     border: 'black solid 1px',
-    borderRadius: '1rem',
-    padding: '1rem',
-    backgroundColor: 'white',
     display: 'grid',
+    padding: '1rem',
+    borderRadius: '1rem',
     justifyItems: 'center',
-    gridTemplateRows: '4fr 1fr 1fr',
+    backgroundColor: 'white',
+    gridTemplateRows: '3fr 1.5rem 3rem',
     '& img':{
       margin: 'auto',
       maxWidth: 'inherit',
       maxHeight: 'inherit',
-      borderRadius: '1rem'
     },
     '& .image':{
       display: 'flex',
+      maxWidth: '12rem',
       minWidth: '8rem',
-      maxWidth: '16rem',
+      maxHeight: '12rem',
       minHeight: '8rem',
-      maxHeight: '16rem',
       marginBottom: '1rem'
     },
     '& .title': {
       width: '100%',
       margin: '0px',
-      paddingTop: '1rem',
       borderTop: '1px solid black',
       overflow: 'hidden',
       textOverflow: 'ellipsis',

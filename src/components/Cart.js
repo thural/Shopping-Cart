@@ -186,7 +186,7 @@ const Cart = ({ cart: items, handleCart }) => {
                 <h5>{title}</h5>
                 <p>${(price * count)}</p>
                 <div className='counter'>
-                  <button onClick={() => handleCart({ id, type: 'decrement' })}>-</button>
+                  <button onClick={() => handleCart({ id, type: 'decrement', count })}>-</button>
                   <p>{count}</p>
                   <button onClick={() => handleCart({ id, type: 'increment' })}>+</button>
                 </div>

@@ -19,7 +19,7 @@ const useStyles = createUseStyles(
   }
 );
 
-function cartReducer(state, {id, type, item}) {
+function cartReducer(state, {id, type, item, count}) {
   const matchesID = (element) => element.id === id;
   const hasInCart = state.findIndex(matchesID) !== -1;
 
@@ -27,14 +27,15 @@ function cartReducer(state, {id, type, item}) {
     case 'increment':
       if(hasInCart) return state.map(product => {
         if (product.id == id) return {...product, count: product.count + 1}
-        else return product
+        return product
       })
       else return [...state, {...item, count:1}];
     case 'decrement':
-      if(hasInCart) return state.map(product => {
+      if(hasInCart && count > 1) return state.map(product => {
         if (product.id == id) return {...product, count: product.count - 1}
-        else return product
-      })
+        return product
+      });
+      return state.filter(product => product.id !== id);
     case 'remove':
       return state.filter(product => product.id !== id);
     default: return state

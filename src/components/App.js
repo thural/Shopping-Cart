@@ -13,8 +13,9 @@ const useStyles = createUseStyles(
     app: {
       margin: '0',
       padding: '0',
-      width: '100%',
-      backgroundColor: 'whitesmoke'
+      minWidth: '100vw',
+      minHeight: '100vh',
+      backgroundColor: 'whitesmoke',
     }
   }
 );

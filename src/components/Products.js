@@ -5,7 +5,7 @@ import CardBoard from "./CardBoard";
 const useStyle = createUseStyles({
   products: {
     margin: 'auto',
-    padding: '3rem'
+    padding: '10vw',
   }
 })
 const Products = ({ products, handleCart }) => {

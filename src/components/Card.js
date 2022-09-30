@@ -3,7 +3,7 @@ import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
   wrapper: {
-    border: 'black solid 1px',
+    border: 'grey solid 1px',
     display: 'grid',
     padding: '1rem',
     borderRadius: '1rem',

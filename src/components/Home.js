@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { createUseStyles } from "react-jss";
 
 const useStyles = createUseStyles({
@@ -38,7 +39,7 @@ const Home = () => {
       <div className="home-text">
         <h3>"Best fake store of the galaxy"</h3>
         <h1>We don't do fashion, we are fashion</h1>
-        <button>Shop now</button>
+        <Link to="/products"><button>Shop now</button></Link>
       </div>
       <div className="home-image"></div>
     </div>

@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import { createUseStyles } from "react-jss"
 
 import { Products } from "./Products";
+import Copyright from "./Copyright";
 import Contact from "./Contact";
 import NavBar from "./Navbar";
 import Home from "./Home";
@@ -15,6 +16,7 @@ const useStyles = createUseStyles(
       padding: '0',
       minWidth: '100vw',
       minHeight: '100vh',
+      position: 'relative',
       backgroundColor: 'whitesmoke',
     }
   }
@@ -71,6 +73,7 @@ const App = () => {
         <Route path="/products" element={<Products products={products} handleCart={handleCart} />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
+      <Copyright />
     </div>
   );
 };

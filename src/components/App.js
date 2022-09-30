@@ -14,7 +14,7 @@ const useStyles = createUseStyles(
     app: {
       margin: '0',
       padding: '0',
-      minWidth: '100vw',
+      minWidth: '100%',
       minHeight: '100vh',
       position: 'relative',
       backgroundColor: 'whitesmoke',

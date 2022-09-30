@@ -11,7 +11,7 @@ const useStyles = createUseStyles(
       width: '100%',
       margin: '0px',
       display: 'flex',
-      padding: '0 4vw',
+      padding: '2vh 2rem',
       position: 'sticky',
       flexWrap: 'wrap',
       fontSize: '1.5rem',
@@ -26,6 +26,10 @@ const useStyles = createUseStyles(
         justifyContent: 'center',
         gap: '2rem'
       },
+      '& h1': {
+        margin: '0',
+        color: 'bisque'
+      },
       '& a, a:hover, a:focus, a:active': {
         textDecoration: 'none',
         color: 'inherit',
@@ -36,6 +40,7 @@ const useStyles = createUseStyles(
         justifyContent: 'center',
         padding:'0',
         gap: '2rem',
+        margin: '0',
       },
       '& li': {
         listStyle: "none",

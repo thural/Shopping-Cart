@@ -8,7 +8,7 @@ const useStyles = createUseStyles(
       width: '2rem',
       height: '2rem',
       zIndex: '1',
-      backgroundColor: 'blanchedalmond',
+      backgroundColor: 'bisque',
       padding: '10px',
       borderRadius: '50px',
     },
@@ -55,7 +55,7 @@ const useStyles = createUseStyles(
       boxSizing: 'border-box',
       backgroundColor: 'white',
       gridTemplateRows: '1fr 7fr 1fr 1fr',
-      boxShadow: 'rgb(0 0 0 / 25%) -16px 0px 32px 16px',
+      boxShadow: 'rgb(0 0 0 / 25%) -16px 0px 32px 32px',
       '& a, a:hover, a:focus, a:active': {
         textDecoration: 'none',
         color: 'inherit',

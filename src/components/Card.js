@@ -10,12 +10,13 @@ const useStyles = createUseStyles({
     justifyItems: 'center',
     backgroundColor: 'white',
     gridTemplateRows: '3fr 1.5rem 3rem',
-    '& img':{
+    boxShadow: 'rgb(0 0 0 / 25%) -16px 0px 32px -8px',
+    '& img': {
       margin: 'auto',
       maxWidth: 'inherit',
       maxHeight: 'inherit',
     },
-    '& .image':{
+    '& .image': {
       display: 'flex',
       maxWidth: '12rem',
       minWidth: '8rem',
@@ -35,20 +36,26 @@ const useStyles = createUseStyles({
       WebkitBoxOrient: 'vertical'
     },
     '& h3': {
-      textAlign:'center',
+      textAlign: 'center',
       fontSize: '1rem',
       margin: '0px'
     },
     '& p': {
       display: 'inline-block',
       marginRight: '1rem'
+    },
+    '& button': {
+      color: 'white',
+      backgroundColor: 'black',
+      borderRadius: '1rem',
+      padding: '0.2rem 0.6rem'
     }
   },
 });
 
-const Card = ({card, handleCart}) => {
+const Card = ({ card, handleCart }) => {
   const classes = useStyles()
-  const {id, title, price, image} = card;
+  const { id, title, price, image } = card;
   return (
     <div id={id} className={classes.wrapper}>
       <div className="image">
@@ -59,7 +66,7 @@ const Card = ({card, handleCart}) => {
       </div>
       <div className="add">
         <p>${price}</p>
-        <button onClick={() => handleCart({id, type:'increment', item:card})}>add to cart</button>
+        <button onClick={() => handleCart({ id, type: 'increment', item: card })}>add to cart</button>
       </div>
     </div>
   )

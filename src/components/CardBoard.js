@@ -14,14 +14,14 @@ const useStyles = createUseStyles({
   }
 });
 
-const CardBoard = ({ handleCart }) => {
+const CardBoard = () => {
   const cards = useContext(StoreContext);
   const classes = useStyles();
 
   return (
     <div className={classes.cardboard}>
       {
-        cards.map((card) => (<Card key={card.id} card={card} handleCart={handleCart} />))
+        cards.map((card) => (<Card key={card.id} card={card} />))
       }
     </div>
   )

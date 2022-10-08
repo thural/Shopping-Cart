@@ -1,12 +1,12 @@
 import React, { useState, useReducer, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { createUseStyles } from "react-jss"
-
-import { Products } from "./Products";
+import HandlerContext from "./Handlers";
+import Products from "./Products";
 import Copyright from "./Copyright";
+import StoreContext from "./Store";
 import Contact from "./Contact";
 import NavBar from "./Navbar";
-import StoreContext from "./Store"
 import Home from "./Home";
 import Cart from "./Cart";
 
@@ -24,6 +24,7 @@ const useStyles = createUseStyles(
 );
 
 function cartReducer(state, { id, type, item, count }) {
+
   const matchesID = (element) => element.id === id;
   const hasInCart = state.findIndex(matchesID) !== -1;
 
@@ -55,26 +56,24 @@ const App = () => {
     setProducts(items);
   };
 
-  const [products, setProducts] = useState([]);
   const [cart, setCart] = useReducer(cartReducer, []);
-
+  const [products, setProducts] = useState([]);
   useEffect(() => { fetchProducts() }, []);
-
-  const handleCart = (action) => { setCart(action) };
-
   const classes = useStyles();
 
   return (
     <div className={classes.app}>
       <StoreContext.Provider value={products}>
-        <NavBar>
-          <Cart cart={cart} handleCart={handleCart} />
-        </NavBar>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products handleCart={handleCart} />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
+        <HandlerContext.Provider value={setCart}>
+          <NavBar>
+            <Cart cart={cart} />
+          </NavBar>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </HandlerContext.Provider>
       </StoreContext.Provider>
       <Copyright />
     </div>

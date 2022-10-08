@@ -5,18 +5,18 @@ import CardBoard from "./CardBoard";
 const useStyle = createUseStyles({
   products: {
     margin: 'auto',
-    padding: '10vw',
+    padding: '10vh 10vw',
   }
 })
-const Products = ({ handleCart }) => {
+const Products = () => {
 
   const classes = useStyle();
 
   return (
     <div className={classes.products}>
-      <CardBoard handleCart={handleCart} />
+      <CardBoard />
     </div>
   );
 };
 
-export { Products };
+export default Products;

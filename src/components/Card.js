@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { createUseStyles } from "react-jss";
+import HandlerContext from "./Handlers"
 
 const useStyles = createUseStyles({
   wrapper: {
@@ -53,20 +54,19 @@ const useStyles = createUseStyles({
   },
 });
 
-const Card = ({ card, handleCart }) => {
-  const classes = useStyles()
+const Card = ({ card }) => {
+  const handleCart = useContext(HandlerContext);
+  const classes = useStyles();
   const { id, title, price, image } = card;
   return (
     <div id={id} className={classes.wrapper}>
-      <div className="image">
-        <img src={image}></img>
-      </div>
-      <div className="title">
-        <h3>{title}</h3>
-      </div>
+      <div className="image"><img src={image}></img></div>
+      <div className="title"><h3>{title}</h3></div>
       <div className="add">
         <p>${price}</p>
-        <button onClick={() => handleCart({ id, type: 'increment', item: card })}>add to cart</button>
+        <button onClick={() => handleCart({ id, type: 'increment', item: card })}>
+          add to cart
+        </button>
       </div>
     </div>
   )

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { createUseStyles } from "react-jss";
 import cartImg from '../assets/cart.svg';
+import HandlerContext from "./Handlers";
 
 const useStyles = createUseStyles(
   {
@@ -146,13 +147,13 @@ const useStyles = createUseStyles(
   }
 );
 
-const Cart = ({ cart: items, handleCart }) => {
-
+const Cart = ({ cart: items}) => {
+  const handleCart = useContext(HandlerContext)
   const classes = useStyles();
 
   const [display, setDisplay] = useState('none');
 
-  const toggleDisplayOnClick = () => {
+  const toggleDisplay = () => {
     if (display === "none") setDisplay("grid")
     else setDisplay("none");
   };
@@ -171,13 +172,11 @@ const Cart = ({ cart: items, handleCart }) => {
 
   return (
     <>
-      <div className={classes.cartBtn} onClick={toggleDisplayOnClick}>
+      <div className={classes.cartBtn} onClick={toggleDisplay}>
         <img src={cartImg} ></img>
         <div className={classes.cartBadge}>{countItems(items)}</div>
       </div>
-
-      <div className={classes.cartBckg} style={{ display: display }} onClick={toggleDisplayOnClick}></div>
-
+      <div className={classes.cartBckg} style={{ display: display }} onClick={toggleDisplay}></div>
       <div className={classes.cart} style={{ display: display }}>
         <h3>Shopping Cart</h3>
         <div className='items'>
@@ -199,7 +198,7 @@ const Cart = ({ cart: items, handleCart }) => {
         <h3>total: ${calcTotal(items)}</h3>
         <div className='buttons'>
           <button>checkout</button>
-          <button onClick={toggleDisplayOnClick}>close</button>
+          <button onClick={toggleDisplay}>close</button>
         </div>
       </div>
     </>

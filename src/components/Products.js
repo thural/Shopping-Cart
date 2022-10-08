@@ -8,13 +8,13 @@ const useStyle = createUseStyles({
     padding: '10vw',
   }
 })
-const Products = ({ products, handleCart }) => {
+const Products = ({ handleCart }) => {
 
   const classes = useStyle();
 
   return (
     <div className={classes.products}>
-      <CardBoard cards={products} handleCart={handleCart} />
+      <CardBoard handleCart={handleCart} />
     </div>
   );
 };

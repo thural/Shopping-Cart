@@ -6,6 +6,7 @@ import { Products } from "./Products";
 import Copyright from "./Copyright";
 import Contact from "./Contact";
 import NavBar from "./Navbar";
+import StoreContext from "./Store"
 import Home from "./Home";
 import Cart from "./Cart";
 
@@ -22,20 +23,20 @@ const useStyles = createUseStyles(
   }
 );
 
-function cartReducer(state, {id, type, item, count}) {
+function cartReducer(state, { id, type, item, count }) {
   const matchesID = (element) => element.id === id;
   const hasInCart = state.findIndex(matchesID) !== -1;
 
   switch (type) {
     case 'increment':
-      if(hasInCart) return state.map(product => {
-        if (product.id == id) return {...product, count: product.count + 1}
+      if (hasInCart) return state.map(product => {
+        if (product.id == id) return { ...product, count: product.count + 1 }
         return product
       })
-      else return [...state, {...item, count:1}];
+      else return [...state, { ...item, count: 1 }];
     case 'decrement':
-      if(hasInCart && count > 1) return state.map(product => {
-        if (product.id == id) return {...product, count: product.count - 1}
+      if (hasInCart && count > 1) return state.map(product => {
+        if (product.id == id) return { ...product, count: product.count - 1 }
         return product
       });
       return state.filter(product => product.id !== id);
@@ -55,8 +56,8 @@ const App = () => {
   };
 
   const [products, setProducts] = useState([]);
-  const [cart, setCart] = useReducer(cartReducer,[]);
-  
+  const [cart, setCart] = useReducer(cartReducer, []);
+
   useEffect(() => { fetchProducts() }, []);
 
   const handleCart = (action) => { setCart(action) };
@@ -65,14 +66,16 @@ const App = () => {
 
   return (
     <div className={classes.app}>
-      <NavBar>
-        <Cart cart={cart} handleCart={handleCart}/>
-      </NavBar>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/products" element={<Products products={products} handleCart={handleCart} />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
+      <StoreContext.Provider value={products}>
+        <NavBar>
+          <Cart cart={cart} handleCart={handleCart} />
+        </NavBar>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Products handleCart={handleCart} />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </StoreContext.Provider>
       <Copyright />
     </div>
   );

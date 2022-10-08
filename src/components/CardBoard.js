@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useContext} from "react";
 import { createUseStyles } from "react-jss";
+import StoreContext from "./Store";
 import Card from "./Card";
 
 const useStyles = createUseStyles({
@@ -13,8 +14,8 @@ const useStyles = createUseStyles({
   }
 });
 
-const CardBoard = ({ cards, handleCart }) => {
-
+const CardBoard = ({ handleCart }) => {
+  const cards = useContext(StoreContext);
   const classes = useStyles();
 
   return (

@@ -1,6 +1,6 @@
 import React from "react";
 import { createUseStyles } from "react-jss";
-import logo from "./github-svgrepo-com.svg"
+import logo from "../assets/github-svgrepo-com.svg"
 
 const useStyles = createUseStyles({
   wrapper: {

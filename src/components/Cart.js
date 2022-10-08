@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { createUseStyles } from "react-jss";
-import cartImg from './cart.svg';
+import cartImg from '../assets/cart.svg';
 
 const useStyles = createUseStyles(
   {

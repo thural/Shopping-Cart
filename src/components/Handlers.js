@@ -1,5 +1,5 @@
-import { createContext } from 'react';
+import { createContext } from 'react'
 
-const HandlerContext = createContext(null);
+const HandlerContext = createContext(null)
 
-export default HandlerContext;
+export default HandlerContext

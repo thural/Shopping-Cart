@@ -1,19 +1,17 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
-    mode: "development",
+    mode: 'development',
     entry: './src/index.js',
     output: {
-      path: path.resolve(__dirname, './dist'),
-      filename: 'main.js',
-      publicPath: '/',
+        path: path.resolve(__dirname, './dist'),
+        filename: 'main.js',
+        publicPath: '/',
     },
     plugins: [
-        new HtmlWebpackPlugin(
-            {
-                template: './src/index.html',
-            }
-        ),
+        new HtmlWebpackPlugin({
+            template: './src/index.html',
+        }),
     ],
     module: {
         rules: [
@@ -21,13 +19,13 @@ module.exports = {
                 test: /\.m?js$/,
                 exclude: /(node_modules|bower_components)/,
                 use: {
-                  loader: 'babel-loader'
-                }
-              },
-              {
+                    loader: 'babel-loader',
+                },
+            },
+            {
                 test: /\.html$/,
-                use: "html-loader"
-              },
+                use: 'html-loader',
+            },
             {
                 test: /\.css$/i,
                 use: ['style-loader', 'css-loader'],
@@ -40,5 +38,5 @@ module.exports = {
     },
     devServer: {
         historyApiFallback: true,
-      },
-};
+    },
+}
